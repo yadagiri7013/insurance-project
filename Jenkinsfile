@@ -16,13 +16,13 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage('Publish the HTML Reports') {
+        stage('Publish test reports') {
             steps {
-                echo 'Publishing HTML reports'
+                echo 'Publishing test reports (HTML) from surefire reports'
                 publishHTML([allowMissing: false, 
                              alwaysLinkToLastBuild: false, 
                              keepAll: false, 
-                             reportDir: 'target/surefire-reports', 
+                             reportDir: '/var/lib/jenkins/workspace/Capstone-Project-Live-Demo/target/surefire-reports', 
                              reportFiles: 'index.html', 
                              reportName: 'HTML Report', 
                              reportTitles: '', 
