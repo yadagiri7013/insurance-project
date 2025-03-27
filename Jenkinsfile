@@ -54,7 +54,7 @@ node{
         sh "${dockerCMD} push yadagiri14/insurance:${tagName}"
             
         }
-        
+    }
     stage('Ansbile config and Deployment') {
       steps {
         ansiblePlaybook credentialsId: 'ansible-ssh', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible-playbook.yml'
@@ -64,8 +64,8 @@ node{
 
         
         
-    }
-}
+    
+
 
 
 
