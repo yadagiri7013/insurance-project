@@ -1,4 +1,5 @@
 pipeline {
+  def tagname = "v${BUILD_NUMBER}" 
   agent any
     tools{
       maven 'M2_HOME'
@@ -24,7 +25,7 @@ pipeline {
             }
     stage('Create a Docker image from the Package Insure-Me.jar file') {
       steps {
-        sh 'docker build -t yadagiri14/insurance.'
+        sh 'docker build -t yadagiri14/insurance:${tagname}'
                     }
             }
     stage('Login to Dockerhub') {
@@ -37,7 +38,7 @@ withCredentials([usernamePassword(credentialsId: 'docker-id', passwordVariable: 
             }
     stage('Push the Docker image') {
       steps {
-        sh 'docker push  yadagiri14/insurance.'
+        sh 'docker push  yadagiri14/insurance:${tagname}'
                                 }
             }
     stage('Ansbile config and Deployment') {
